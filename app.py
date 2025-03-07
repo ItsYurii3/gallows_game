@@ -1,5 +1,6 @@
 from word import Word
 from player import Player
+from gallows import Gallows
 
 
 class Game:
@@ -31,19 +32,21 @@ class Game:
     def game_cycle(self):
         riddle_word = Word()            
         player = Player(input("Enter your name.... "))
+        gallows = Gallows()    
         while (not player.check_attempt_limit()):
             user_ch = player.enter_char(riddle_word.word) 
-            ch, flag = user_ch
+            ch = user_ch(0)
             riddle_word.save_enter_char(ch)
             guess_word = riddle_word.display_word_state()
 
             print(f"Word:  {guess_word}\n")
             print(f"Mistake {len(riddle_word.incorrect_letters)}: {str(riddle_word.incorrect_letters)}" )
+            gallows.display(player.attempt_user)
             
             if riddle_word.is_guess(riddle_word.word):
                 print(f"{player.name}, you guessed the word {guess_word}. Congratulations, you won! ")
                 break
-            elif player.check_attempt_limit() and not riddle_word.is_guess():
+            elif player.check_attempt_limit() and not riddle_word.is_guess(riddle_word.word):
                  print(f"{player.name}, you lost. Try again!")
          
              

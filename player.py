@@ -6,8 +6,8 @@ class Player:
         self.attempt_user = 0
     
     def enter_char(self, word: str):
-        while(True):
-            ch = input('').strip().lower()
+        while(self.attempt_limit > self.attempt_user):
+            ch = input('Enter a char...  ').strip().lower()
             if len(ch) == 1 and ch.isalpha():
                 if ch in word:
                     print("You have guessed the character")
@@ -19,8 +19,6 @@ class Player:
             else:
                 print("You have entered not correct symbol")    
             
-         
             
-        
     def check_attempt_limit(self):
         return self.attempt_limit == self.attempt_user

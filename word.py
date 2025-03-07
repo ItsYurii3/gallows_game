@@ -3,8 +3,8 @@ import random
 
 class Word:   
                  
-    def __init__(self, word):
-        self.word = word.lower()
+    def __init__(self):
+        self.word = self.generate_word().lower()
         self.guessed_letters = set()
         self.incorrect_letters = set()   
         
@@ -33,5 +33,5 @@ class Word:
         return hidden_word
             
             
-    def is_guess(self):
-       return all(i in self.guessed_letters for i in self.word)
+    def is_guess(self, word: str):
+       return all(i in self.guessed_letters for i in word)

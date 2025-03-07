@@ -14,12 +14,12 @@ class Word:
               word_list = text.read().split()
               return random.choice(word_list)        
          
-    def safe_enter_char(self, ch: str):
+    def save_enter_char(self, ch: str):
         if len(ch) > 1 or ch == " ":
-            print("You should enter just one character")
+            print("You should enter just one character\n")
             return
         if ch in self.guessed_letters or ch in self.incorrect_letters:
-            print("You have already entered this character")
+            print("You have already entered this character\n")
             return
         
         if ch in self.word:
@@ -35,3 +35,6 @@ class Word:
             
     def is_guess(self, word: str):
        return all(i in self.guessed_letters for i in word)
+   
+    def display_mistake(self):
+        return self.incorrect_letters
